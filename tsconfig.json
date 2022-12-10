@@ -25,5 +25,5 @@
     ]
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "<tsconfigRootDir>/cypress/**/*"]
+  "exclude": ["node_modules", "cypress"]
 }
