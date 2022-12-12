@@ -10,7 +10,7 @@ module.exports = (phase, { defaultConfig }) => {
         experimental: {
             appDir: true,
         },
-        basePath: "/notes",
+        basePath: "/projects/notes",
     }
 
     return config
