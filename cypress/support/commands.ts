@@ -1,5 +1,20 @@
 /// <reference types="cypress" />
 
+Cypress.Commands.add("getByTestId", (selector, ...args) => {
+    return cy.get(`[data-test-id=${selector}]`, ...args)
+})
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            getByTestId(
+                selector: string,
+                args?: Partial<Loggable & Timeoutable & Withinable & Shadow>
+            ): Chainable<JQuery<HTMLElement>>
+        }
+    }
+}
+
 export {}
 // ***********************************************
 // This example commands.ts shows you how to
@@ -13,7 +28,7 @@ export {}
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+// Cypress.Commands.add("login", (email, password) => {})
 //
 //
 // -- This is a child command --

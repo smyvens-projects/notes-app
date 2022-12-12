@@ -1,5 +1,3 @@
-const { PHASE_DEVELOPMENT_SERVER } = require("next/constants")
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -11,6 +9,9 @@ module.exports = (phase, { defaultConfig }) => {
             appDir: true,
         },
         basePath: "/projects/notes",
+        compiler: {
+            reactRemoveProperties: process.env.NODE_ENV === "production",
+        },
     }
 
     return config
