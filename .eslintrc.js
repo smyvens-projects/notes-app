@@ -23,7 +23,7 @@ module.exports = {
     },
     plugins: ["import", "@typescript-eslint"],
     rules: {
-        "no-console": "error",
+        "no-console": "warn",
         "react/react-in-jsx-scope": "off",
         "react/jsx-props-no-spreading": "off",
         "prettier/prettier": "off",
@@ -33,6 +33,8 @@ module.exports = {
                 namedComponents: "function-declaration",
             },
         ],
+        "react/require-default-props": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
     },
     settings: {
         react: {
