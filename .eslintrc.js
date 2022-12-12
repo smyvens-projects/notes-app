@@ -36,6 +36,14 @@ module.exports = {
         "react/require-default-props": "off",
         "@typescript-eslint/no-unused-vars": "warn",
     },
+    overrides: [
+        {
+            files: ["cypress/**/*.ts"],
+            rules: {
+                "@typescript-eslint/no-namespace": "off",
+            },
+        },
+    ],
     settings: {
         react: {
             version: "detect",
