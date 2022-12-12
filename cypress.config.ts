@@ -6,4 +6,12 @@ export default defineConfig({
             // implement node event listeners here
         },
     },
+
+    component: {
+        devServer: {
+            framework: "next",
+            bundler: "webpack",
+        },
+    },
+    video: process.env.NODE_ENV === "development",
 })

@@ -9,7 +9,7 @@
     "lint": "tsc && pnpm next lint && pnpm lint:prettier:check",
     "lint:prettier:write": "prettier --write '**/*.{ts,tsx,md}'",
     "lint:prettier:check": "prettier --check '**/*.{ts,tsx,md}'",
-    "test": "cypress run"
+    "test": "cypress run --component --headed"
   },
   "dependencies": {
     "@types/node": "18.11.11",
