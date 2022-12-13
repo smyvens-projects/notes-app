@@ -12,6 +12,7 @@
     "test": "cypress run --component --headed"
   },
   "dependencies": {
+    "@next/font": "^13.0.6",
     "@types/node": "18.11.11",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
