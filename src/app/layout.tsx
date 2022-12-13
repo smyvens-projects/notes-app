@@ -1,3 +1,4 @@
+import { loudrinaShadow, gilroy } from "~/utils/font-loader"
 import { ReactNode } from "react"
 
 import "~/styles/globals.css"
@@ -10,7 +11,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en">
             <head />
-            <body>{children}</body>
+            <body className={`${loudrinaShadow.variable} ${gilroy.variable}`}>{children}</body>
         </html>
     )
 }

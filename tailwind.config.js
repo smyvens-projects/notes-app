@@ -1,4 +1,5 @@
 const customConfig = require("tailwind-config")
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,8 +8,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                poppins: ["Poppins", "sans-serif"],
-                gilroy: ["Gilroy", "sans-serif"],
+                poppins: ["var(--font-poppins)", "sans-serif"],
+                gilroy: ["var(--font-gilroy)", "sans-serif"],
+                "loudrina-shadow": ["var(--font-loudrina-shadow)"],
             },
         },
     },
