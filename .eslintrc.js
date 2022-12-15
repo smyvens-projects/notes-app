@@ -36,6 +36,7 @@ module.exports = {
         "react/require-default-props": "off",
         "@typescript-eslint/no-unused-vars": "warn",
         "jsx-a11y/no-static-element-interactions": "off", // if you add a mouse down event listener prop on a div, you don't need to add touch, mouse...
+        "jsx-a11y/label-has-associated-control": "off", // buggy, <label /> htmlFor does not work
     },
     overrides: [
         {
