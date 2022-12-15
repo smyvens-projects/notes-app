@@ -15,11 +15,9 @@ export default function Sidebar() {
     return (
         <div className="p-3">
             <div className="flex items-center justify-between mb-3 px-2">
-                <h1 className="font-loudrina-shadow text-3xl uppercase text-primary-600">
-                    Notes - App
-                </h1>
+                <h1 className="font-loudrina-shadow text-3xl uppercase">Notes - App</h1>
                 <Button onClick={newNote}>
-                    <IoCreateOutline size={25} className="font-extrabold text-secondary-600" />
+                    <IoCreateOutline size={25} className="font-extrabold text-blue-600" />
                 </Button>
             </div>
             <form
