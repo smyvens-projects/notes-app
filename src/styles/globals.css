@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .vertical-scrollbar {
+        scrollbar-width: none;
+        overflow-y: scroll;
+    }
+    .vertical-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
