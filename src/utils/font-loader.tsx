@@ -45,4 +45,5 @@ export const gilroy = localFont({
 export const loudrinaShadow = localFont({
     src: "../../public/fonts/Londrina_Shadow/Regular.ttf",
     variable: "--font-loudrina-shadow",
+    fallback: ["cursive"],
 })
