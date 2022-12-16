@@ -1,39 +1,47 @@
 "use client"
 
-import { FormEvent, useState } from "react"
+import { FormEvent } from "react"
 import { AiOutlineSearch } from "react-icons/ai"
 import { IoCreateOutline } from "react-icons/io5"
 import Button from "~/components/Button"
 import { PartialNote } from "~/types"
 import Note from "~/app/[note]/(Sidebar)/Note"
+import { useRouter } from "next/navigation"
 
-export default function Sidebar() {
-    const [notes, setNotes] = useState<PartialNote[]>([])
+interface SidebarProps {
+    notes: PartialNote[]
+}
 
+export default function Sidebar({ notes }: SidebarProps) {
+    const router = useRouter()
     const handleSearch = (event: FormEvent) => {
         event.preventDefault()
     }
 
-    const newNote = () => {
+    const newNote = async () => {
         const tempGenID = () => {
             return Math.random().toString(36)
         }
 
-        const noteId = tempGenID()
-        setNotes([
-            {
-                id: noteId,
+        await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/notes/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: tempGenID(),
                 title: "Untitled Note",
                 date_created: new Date(),
-                last_modified: new Date().toLocaleString(),
-            },
-            ...notes,
-        ])
+                last_modified: new Date(),
+            }),
+        })
+
+        router.refresh()
     }
 
     return (
-        <div className="p-3 h-full flex flex-col">
-            <div className="mb-4">
+        <div className="py-3 h-full flex flex-col">
+            <div className="mb-4 px-3">
                 <div className="flex items-center justify-between mb-3 px-2">
                     <h1 className="font-loudrina-shadow text-3xl uppercase">Notes - App</h1>
                     <Button onClick={newNote}>
@@ -58,7 +66,7 @@ export default function Sidebar() {
                 </form>
             </div>
 
-            <div className="vertical-scrollbar px-2">
+            <div className="flex flex-col vertical-scrollbar">
                 {notes.map(note => (
                     <Note key={note.id} {...note} />
                 ))}
