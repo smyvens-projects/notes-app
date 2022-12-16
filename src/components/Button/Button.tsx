@@ -7,13 +7,21 @@ interface ButtonProps {
     fullWidth?: true
     outline?: true
     background?: {
-        default?: `bg-${string}`
-        hover?: `hover:${string}`
-        active?: `active:${string}`
+        default?: `bg-${string}` | false
+        hover?: `hover:${string}` | false
+        active?: `active:${string}` | false
     }
+    noExtraStyles?: true
 }
 
-export default function Button({ children, onClick, fullWidth, background, outline }: ButtonProps) {
+export default function Button({
+    children,
+    onClick,
+    fullWidth,
+    background,
+    outline,
+    noExtraStyles,
+}: ButtonProps) {
     return (
         <button
             data-test-id="button"
@@ -23,7 +31,7 @@ export default function Button({ children, onClick, fullWidth, background, outli
                 outline ? "outline outline-slate-300 outline-1 " : ""
             }${background?.hover || "hover:bg-container-200"} ${
                 background?.active || "active:bg-container-300"
-            } ${background?.default || ""} px-2 py-1 rounded-md`}
+            } ${background?.default || ""} ${noExtraStyles ? "" : "px-2 py-1 rounded-md"}`}
         >
             {children}
         </button>
