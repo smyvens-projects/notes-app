@@ -10,24 +10,26 @@ export default function Note({ id, title, last_modified }: PartialNote) {
     const [isActive] = useState(pathname?.split(/\//).at(-1) === id)
 
     return (
-        <Button
-            onClick={() => router.push(`/projects/notes/${id}`)}
-            background={{ default: isActive && "bg-white", hover: "hover:bg-container-400" }}
-            noExtraStyles
+        <div
+            className={`${
+                isActive ? "bg-white border-y-container-300" : ""
+            } flex items-center justify-between p-3 border-y hover:bg-container-400`}
         >
-            <span
-                className={`${
-                    isActive ? "border-y-container-300" : ""
-                } flex items-center justify-between text-left p-3 border-y`}
+            <Button
+                fullWidth
+                background={{ hover: "hover:", active: "active:translate-y-1" }}
+                onClick={() => router.push(`/projects/notes/${id}`)}
             >
-                <span className="text-container-700">
-                    <h1 className="font-semibold font-gilroy">{title}</h1>
+                <span className="text-left">
+                    <h1 className="font-medium font-gilroy">{title}</h1>
                     <h3 className="font-light font-gilroy text-sm">
                         {last_modified && new Date(Date.parse(last_modified)).toLocaleTimeString()}
                     </h3>
                 </span>
+            </Button>
+            <Button background={{ hover: "hover:", active: "active:" }}>
                 <TfiMoreAlt />
-            </span>
-        </Button>
+            </Button>
+        </div>
     )
 }
