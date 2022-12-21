@@ -53,12 +53,14 @@ export default function PopupWindow({
     return isOpen ? (
         <div
             className="fixed w-screen h-screen z-50"
+            data-test-id="popup-window-wrapper"
             onClick={handleClose}
             ref={wrapperRef}
             style={{ backgroundColor: pageTint }}
         >
             <div
                 style={{ ...location, backgroundColor, borderColor }}
+                data-test-id="popup-window"
                 className="fixed p-1 rounded-md shadow-around border border-container-300"
             >
                 {children}
