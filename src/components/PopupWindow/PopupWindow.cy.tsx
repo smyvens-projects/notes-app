@@ -30,11 +30,7 @@ describe("popup window", () => {
                 <button type="button" ref={trigger} id="trigger">
                     trigger
                 </button>
-                <PopupWindow
-                    trigger={trigger}
-                    location={location}
-                    backgroundColor={backgroundColor}
-                >
+                <PopupWindow trigger={trigger} location={location}>
                     {content}
                 </PopupWindow>
             </>
@@ -53,7 +49,7 @@ describe("popup window", () => {
         cy.contains(content).should("not.exist")
     })
 
-    it("renders in the correct location", () => {
+    it("renders in the given location", () => {
         location = { left: "50px", top: "100px" }
 
         cy.mount(
@@ -61,11 +57,7 @@ describe("popup window", () => {
                 <button type="button" ref={trigger} id="trigger">
                     trigger
                 </button>
-                <PopupWindow
-                    trigger={trigger}
-                    location={location}
-                    backgroundColor={backgroundColor}
-                >
+                <PopupWindow trigger={trigger} location={location}>
                     {content}
                 </PopupWindow>
             </>
@@ -75,8 +67,6 @@ describe("popup window", () => {
 
         cy.getByTestId("popup-window").should("have.css", "top", location.top)
         cy.getByTestId("popup-window").should("have.css", "left", location.left)
-
-        // TODO: ensure that it can't go of the screen
     })
 
     it("renders optional styles when used", () => {
