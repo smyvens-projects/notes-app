@@ -12,6 +12,9 @@ module.exports = {
                 gilroy: ["var(--font-gilroy)", "sans-serif"],
                 "loudrina-shadow": ["var(--font-loudrina-shadow)"],
             },
+            boxShadow: {
+                around: "rgba(0, 0, 0, 0.25) 0px 5px 30px",
+            },
         },
     },
     plugins: [],

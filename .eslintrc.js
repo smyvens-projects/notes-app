@@ -38,6 +38,8 @@ module.exports = {
         "jsx-a11y/no-static-element-interactions": "off", // if you add a mouse down event listener prop on a div, you don't need to add touch, mouse...
         "jsx-a11y/click-events-have-key-events": "off", // if you add a mouse down event listener prop on a div, you don't need to add touch, mouse...
         "jsx-a11y/label-has-associated-control": "off", // buggy, <label /> htmlFor does not work
+        "one-var": "off",
+        "no-param-reassign": "off",
     },
     overrides: [
         {
