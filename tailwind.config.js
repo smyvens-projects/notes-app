@@ -13,7 +13,7 @@ module.exports = {
                 "loudrina-shadow": ["var(--font-loudrina-shadow)"],
             },
             boxShadow: {
-                around: "rgba(0, 0, 0, 0.25) 0px 5px 60px;",
+                around: "rgba(0, 0, 0, 0.25) 0px 5px 30px;",
             },
         },
     },

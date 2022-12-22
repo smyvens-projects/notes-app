@@ -12,7 +12,7 @@ const convertHexToRgb = (color: string) => {
 }
 
 let trigger: RefObject<HTMLButtonElement>,
-    location: { left: Property.Left; top: Property.Top },
+    location: { left: `${number}px`; top: `${number}px` },
     backgroundColor: Property.BackgroundColor,
     content: string,
     borderColor: Property.BorderColor,
@@ -25,6 +25,7 @@ describe("popup window", () => {
     })
 
     it("it renders after user clicks on trigger and hides when user click out", () => {
+        location = { left: "0px", top: "0px" }
         cy.mount(
             <>
                 <button type="button" ref={trigger} id="trigger">
@@ -42,7 +43,7 @@ describe("popup window", () => {
 
         // click on the trigger and the popup should show
         cy.get("#trigger").click()
-        cy.contains(content)
+        cy.contains(content).should("be.visible")
 
         // click on the document, and the popup should disappear
         cy.getByTestId("popup-window-wrapper").click()
@@ -50,7 +51,7 @@ describe("popup window", () => {
     })
 
     it("renders in the given location", () => {
-        location = { left: "50px", top: "100px" }
+        location = { left: "30px", top: "30px" }
 
         cy.mount(
             <>
@@ -67,6 +68,28 @@ describe("popup window", () => {
 
         cy.getByTestId("popup-window").should("have.css", "top", location.top)
         cy.getByTestId("popup-window").should("have.css", "left", location.left)
+        cy.contains(content).should("be.visible")
+    })
+
+    it("adjust rendering location if content will be off the screen", () => {
+        location = { left: "600px", top: "1540px" }
+
+        cy.mount(
+            <>
+                <button type="button" ref={trigger} id="trigger">
+                    trigger
+                </button>
+                <PopupWindow trigger={trigger} location={location}>
+                    {content}
+                </PopupWindow>
+            </>
+        )
+
+        cy.get("#trigger").click()
+
+        cy.getByTestId("popup-window").should("not.have.css", "top", location.top)
+        cy.getByTestId("popup-window").should("not.have.css", "left", location.left)
+        cy.contains(content).should("be.visible")
     })
 
     it("renders optional styles when used", () => {
