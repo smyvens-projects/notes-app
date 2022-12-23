@@ -1,6 +1,5 @@
 import { Property } from "csstype"
 import hexRgb from "hex-rgb"
-import { createRef, RefObject } from "react"
 import PopupWindow from "."
 
 const convertHexToRgb = (color: string) => {
