@@ -69,7 +69,7 @@ describe("Popup window", () => {
         cy.contains(content).should("not.exist")
     })
 
-    it.only('shows when user click on any "open popup trigger" when there are multiple')
+    it('shows when user click on any "open popup trigger" when there are multiple')
 
     it("hides when the user clicks on a close trigger", () => {
         cy.mount(
