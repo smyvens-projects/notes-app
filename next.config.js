@@ -8,7 +8,7 @@ module.exports = (phase, { defaultConfig }) => {
         experimental: {
             appDir: true,
         },
-        basePath: "/projects/notes",
+        basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
         compiler: {
             reactRemoveProperties: process.env.NODE_ENV === "production",
         },
