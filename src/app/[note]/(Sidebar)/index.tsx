@@ -11,7 +11,7 @@ interface SidebarProps {
 
 export default function Sidebar({ notes }: SidebarProps) {
     return (
-        <span className="flex flex-col w-full h-full bg-container-200">
+        <span className="flex flex-col w-full h-full bg-container-100">
             <Header />
 
             <div className="flex flex-col overflow-y-scroll h-full">
