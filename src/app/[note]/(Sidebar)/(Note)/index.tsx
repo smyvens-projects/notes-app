@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { TfiMoreAlt } from "react-icons/tfi"
 import { useNote } from "~/hooks/useNote"
-import Menu from "./Menu"
+import ContextMenu from "./Menu"
 
 export default function Note() {
     const { id, title, last_modified: lastModified } = useNote()
@@ -16,7 +16,7 @@ export default function Note() {
     return (
         <div
             className={`${
-                isActive ? "bg-white border-y-container-300" : ""
+                isActive ? "bg-white border-y-container-300" : "border-y-container-100"
             } flex items-center justify-between p-3 border-y hover:bg-container-400 text-slate-600 hover:text-slate-700`}
         >
             <Link href={`${process.env.NEXT_PUBLIC_BASE_PATH}/${id}`}>
@@ -38,7 +38,7 @@ export default function Note() {
                 <TfiMoreAlt />
             </span>
 
-            <Menu openMenuBtn={openMenuBtn} />
+            <ContextMenu openMenuBtn={openMenuBtn} />
         </div>
     )
 }
