@@ -1,3 +1,4 @@
+// input.tsx
 import { ChangeEvent, useEffect, useRef } from "react"
 import { IconType } from "react-icons/lib"
 
@@ -33,13 +34,13 @@ export default function Input({
                 type={type}
                 onChange={onChange}
                 className={`${
-                    icon?.name ? "pr-10" : "pr-6"
-                } w-full outline outline-1 outline-gray-300 border-none rounded-md py-2 pl-6 text-gray-500 focus:bg-slate-200`}
+                    icon?.name ? "pr-8" : "pr-3"
+                } w-full outline outline-1 outline-gray-300 border-none rounded-md py-[3px] pl-3 text-gray-500 focus:bg-slate-200`}
                 ref={inputRef}
                 data-test-id="input"
             />
             {icon && (
-                <span className="flex items-center justify-center h-full absolute top-0 right-0 mr-3">
+                <span className="flex items-center justify-center h-full absolute top-0 right-0 mr-2">
                     <icon.name
                         size={20}
                         className={`text-slate-500 ${icon.onClick && "cursor-pointer"}`}
