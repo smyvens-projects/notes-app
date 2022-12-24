@@ -1,8 +1,9 @@
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
-import { HiOutlineDuplicate } from "react-icons/hi"
+import { HiOutlineDuplicate, HiOutlineNewspaper } from "react-icons/hi"
 import { IoCreateOutline, IoTrashOutline } from "react-icons/io5"
+import Input from "~/components/Input"
 import PopupWindow from "~/components/PopupWindow"
 import { useNote } from "~/hooks/useNote"
 import { createNote, deleteNote, updateNote } from "~/utils/note-manager"
@@ -21,7 +22,6 @@ export default function Menu({ openMenuBtn }: MenuProps) {
     const [menuLocation, setMenuLocation] = useState<{ left: `${number}px`; top: `${number}px` }>()
     const handleMenuLocation = (isOpen: boolean) => {
         if (!isOpen || !openMenuBtn) return
-
         setMenuLocation({
             left: `${openMenuBtn.offsetLeft + openMenuBtn.offsetWidth}px`,
             top: `${openMenuBtn.offsetTop + openMenuBtn.offsetHeight}px`,
@@ -34,7 +34,13 @@ export default function Menu({ openMenuBtn }: MenuProps) {
     const [closeRenameNote, setCloseRenameNote] = useState<HTMLElement | null>(null)
 
     const [newName, setNewName] = useState("")
-    const handleRename = async () => {
+    const handleRename = async (event?: FormEvent<HTMLFormElement>) => {
+        event?.preventDefault()
+        event?.stopPropagation()
+
+        // don't rename if the user did not type anything
+        if (!newName || newName === title) return
+
         await updateNote(id, { title: newName })
         closeRenameNote?.click()
         router.refresh()
@@ -73,10 +79,10 @@ export default function Menu({ openMenuBtn }: MenuProps) {
                 <div className="flex flex-col justify-center py-1 px-1 gap-2">
                     <MenuRow
                         icon={IoCreateOutline}
-                        onClick={() => closeMenuBtn?.click()}
-                        innerRef={setOpenRenameNote}
+                        onClick={() => closeMenuBtn?.click()} // close current menu
+                        innerRef={setOpenRenameNote} // opens new note menu
                     >
-                        <h3>Rename</h3>
+                        Rename
                     </MenuRow>
                     <MenuRow
                         icon={isFavorite ? { Name: AiFillStar, color: "orange" } : AiOutlineStar}
@@ -91,23 +97,25 @@ export default function Menu({ openMenuBtn }: MenuProps) {
                         Delete
                     </MenuRow>
                 </div>
-                <button type="button" ref={setCloseMenuBtn} className="hidden">
-                    {}
-                </button>
+                <input type="button" ref={setCloseMenuBtn} className="hidden" />
             </PopupWindow>
 
             <PopupWindow
-                triggers={{ open: openRenameNote }}
+                triggers={{ open: openRenameNote, close: closeRenameNote }}
                 location={menuLocation || { left: "0px", top: "0px" }}
             >
-                <form method="post" onSubmit={handleRename}>
-                    <input type="text" onChange={element => setNewName(element.target.value)} />
+                <form method="post" onSubmit={handleRename} className="w-72">
+                    <Input
+                        onChange={input => setNewName(input.target.value)}
+                        icon={{
+                            name: HiOutlineNewspaper,
+                            onClick: handleRename,
+                        }}
+                        focusOnLoad
+                    />
+                    <input type="button" className="hidden" ref={setCloseRenameNote} />
                 </form>
-                <button type="button" ref={setCloseRenameNote} className="hidden">
-                    {}
-                </button>
             </PopupWindow>
-            {}
         </>
     )
 }

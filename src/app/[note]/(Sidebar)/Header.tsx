@@ -1,6 +1,8 @@
 import { useRouter } from "next/navigation"
-import { useState, FormEvent } from "react"
-import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai"
+import { FormEvent, useState } from "react"
+import { AiOutlinePlus } from "react-icons/ai"
+import { HiOutlineNewspaper } from "react-icons/hi"
+import Input from "~/components/Input"
 import PopupWindow from "~/components/PopupWindow"
 import { createNote } from "~/utils/note-manager"
 
@@ -43,24 +45,16 @@ export default function Header() {
                         left: `${newNoteBtn.offsetWidth + newNoteBtn.offsetLeft}px`,
                     }}
                 >
-                    <form
-                        method="post"
-                        onSubmit={handleNewNote}
-                        className="flex items-center justify-center"
-                    >
-                        <input
-                            type="text"
-                            name=""
-                            id=""
+                    <form method="post" onSubmit={handleNewNote} className="p-[2px] w-96">
+                        <Input
                             onChange={event => setNewNoteName(event.target.value)}
+                            icon={{
+                                name: HiOutlineNewspaper,
+                                onClick: () => closeNewNoteBtn?.click(),
+                            }}
+                            focusOnLoad
                         />
-                        <span ref={setCloseNewNoteBtn}>
-                            {/* TODO: Refractor into Button Component */}
-                            <AiOutlineCheck
-                                size={25}
-                                className="cursor-pointer hover:bg-container-300 rounded-md p-1"
-                            />
-                        </span>
+                        <input type="button" value="" className="hidden" ref={setCloseNewNoteBtn} />
                     </form>
                 </PopupWindow>
             )}
