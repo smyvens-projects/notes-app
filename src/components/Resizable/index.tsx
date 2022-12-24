@@ -60,7 +60,7 @@ export default function Resizable({ side, width, minWidth, maxWidth, children }:
                 {children}
             </div>
             <div
-                className="w-1 border-container-300 border-r-2 cursor-col-resize "
+                className="w-1 border-container-300 border-l-2 cursor-col-resize "
                 onMouseDown={() => setIsDragging(true)}
                 data-test-id="resize-handle"
             />
