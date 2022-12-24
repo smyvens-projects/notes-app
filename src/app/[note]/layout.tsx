@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import Resizable from "~/components/Resizable"
 import { getAllNotes } from "~/utils/note-manager"
 import Sidebar from "./(Sidebar)"
 
@@ -14,9 +15,9 @@ export default async function Layout({ children }: LayoutProps) {
 
     return (
         <div className="h-screen w-full">
-            <div className="w-[350px] h-screen border-r-container-300 border-r">
+            <Resizable side="right" width="350px" minWidth="275px" maxWidth="75vw">
                 <Sidebar notes={notes} />
-            </div>
+            </Resizable>
             <div>{children}</div>
         </div>
     )
